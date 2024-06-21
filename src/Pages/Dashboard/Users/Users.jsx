@@ -3,6 +3,13 @@ import userList from "../../../hooks/userList";
 
 const Users = () => {
   const [employee, loading] = userList();
+  if(loading){
+    return (
+      <div className="w-full min-h-svh flex justify-center items-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    )
+  }
   const employees = employee.filter(item => item.role === 'employee')
   console.log(employees);
   return (

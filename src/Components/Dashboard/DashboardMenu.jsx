@@ -1,10 +1,18 @@
-
+import { FaUserGroup } from "react-icons/fa6";
+import { HiMiniUserGroup } from "react-icons/hi2";
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
+import { FaBookOpen, FaHistory } from "react-icons/fa";
+import { GrContact } from "react-icons/gr";
 
 const DashboardMenu = () => {const [isOpen, setIsOpen] = useState(false);
   const {user,signout} = useContext(AuthContext)
+
+
+  const isEmployee = false;
+  const isHr = false;
+  const isAdmin = true;
 
   const handleLogOut = () => {
     signout()
@@ -80,9 +88,10 @@ const DashboardMenu = () => {const [isOpen, setIsOpen] = useState(false);
                   className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400"
                 >
                  
-                 <Link to={'/dashboard/employee-list'} className="-mr-1 font-medium">All Employee</Link>
+                 <Link to={'/dashboard'} className="-mr-1 font-medium">Dashboard</Link>
                 </a>
               </li>
+             
               <li>
                 <a
                   href="#"
@@ -159,51 +168,47 @@ const DashboardMenu = () => {const [isOpen, setIsOpen] = useState(false);
           </div>
 
           <ul className="space-y-2 tracking-wide mt-8">
-            <li>
-              <a
-                href="#"
-                className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400"
-              >
-                <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
-                    className="fill-current text-cyan-400 dark:fill-slate-600"
-                  />
-                  <path
-                    d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
-                    className="fill-current text-cyan-200 group-hover:text-cyan-300"
-                  />
-                  <path
-                    d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
-                    className="fill-current group-hover:text-sky-300"
-                  />
-                </svg>
-                <Link to={'/dashboard/employee-list'} className="-mr-1 font-medium">All Employee</Link>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
+          <li>
+                <a
+                  href="#"
+                  className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400"
                 >
-                  <path
-                    className="fill-current text-gray-300 group-hover:text-cyan-300"
-                    fillRule="evenodd"
-                    d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
-                    clipRule="evenodd"
-                  />
-                  <path
-                    className="fill-current text-gray-600 group-hover:text-cyan-600"
-                    d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"
-                  />
-                </svg>
-                <span className="group-hover:text-gray-700">Categories</span>
+                 
+                 <Link to={'/dashboard'} className="-mr-1 font-medium">Dashboard</Link>
+                </a>
+              </li>
+
+              {
+                isAdmin ? <>{/* admin */}
+                <li>
+                  <a
+                    href="#"
+                    className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+                  >
+                    <HiMiniUserGroup />
+                    
+                    <Link to={'/dashboard/all-employee-list'} className="-mr-1 font-medium">All Employee</Link>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+                  >
+                    <GrContact />
+                    
+                    <Link to={'/dashboard/contact-us'} className="-mr-1 font-medium">Contact Us</Link>
+                  </a>
+                </li>
+                </>
+                 : isEmployee ? <>
+                <li>
+              <a
+                href="#"
+                className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+              >
+               <FaUserGroup />
+                <Link to={'/dashboard/employee-list'} className="-mr-1 font-medium">Employee</Link>
               </a>
             </li>
             <li>
@@ -211,7 +216,17 @@ const DashboardMenu = () => {const [isOpen, setIsOpen] = useState(false);
                 href="#"
                 className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
               >
-                <svg
+                <FaBookOpen />
+                <Link to={'/dashboard/progress'} className="-mr-1 font-medium">Progress</Link>
+              </a>
+            </li>
+                </> : isHr ? <>
+                <li>
+                <a
+                  href="#"
+                  className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+                >
+                  <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
                   viewBox="0 0 20 20"
@@ -228,57 +243,31 @@ const DashboardMenu = () => {const [isOpen, setIsOpen] = useState(false);
                     d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
                   />
                 </svg>
-                <span className="group-hover:text-gray-700">Reports</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
+                  <Link to={'/dashboard/work-sheet'} className="group-hover:text-gray-700">Work Sheet</Link>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
                 >
-                  <path
-                    className="fill-current text-gray-600 group-hover:text-cyan-600"
-                    d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"
-                  />
-                  <path
-                    className="fill-current text-gray-300 group-hover:text-cyan-300"
-                    d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"
-                  />
-                </svg>
-                <span className="group-hover:text-gray-700">Other data</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    className="fill-current text-gray-300 group-hover:text-cyan-300"
-                    d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"
-                  />
-                  <path
-                    className="fill-current text-gray-600 group-hover:text-cyan-600"
-                    fillRule="evenodd"
-                    d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="group-hover:text-gray-700">Finance</span>
-              </a>
-            </li>
+                  <FaHistory />
+                  <Link to={'/payment-history'} className="group-hover:text-gray-700">Payment History</Link>
+                </a>
+              </li></>:<></>
+              }
+
+
+
+              {/* employee */}
+              
+              {/* hr */}
+            
+           
+
+
+            
+            
           </ul>
         </div>
 

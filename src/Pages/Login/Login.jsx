@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" />
 const Login = () => {
  
@@ -46,10 +47,10 @@ const Login = () => {
 <div className="min-h-screen flex flex-col items-center  justify-center bg-blue-100">
   <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
     <div className="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800">Login To Your Account</div>
-    <button className="relative mt-6 border rounded-md py-2 text-sm text-gray-800 bg-gray-100 hover:bg-gray-200">
-      <span className="absolute left-0 top-0 flex items-center justify-center h-full w-10 text-blue-500"><i className="fab fa-facebook-f"></i></span>
-      <span>continue with Google</span>
-    </button>
+    
+    <SocialLogin></SocialLogin>
+
+
     <div className="relative mt-10 h-px bg-gray-300">
       <div className="absolute left-0 top-0 flex justify-center w-full -mt-2">
         <span className="bg-white px-4 text-xs text-gray-500 uppercase">Or Login With Email</span>
