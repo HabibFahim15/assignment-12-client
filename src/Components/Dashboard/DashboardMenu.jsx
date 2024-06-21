@@ -1,9 +1,18 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../../Providers/AuthProvider";
 
-const Dashboard = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const {user} = useContext(AuthContext)
+import { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
+
+const DashboardMenu = () => {const [isOpen, setIsOpen] = useState(false);
+  const {user,signout} = useContext(AuthContext)
+
+  const handleLogOut = () => {
+    signout()
+      .then(() =>{
+          
+      })
+      .catch(error => console.log(error));
+  };
 
   let displayName = "";
   let email = "";
@@ -17,7 +26,7 @@ const Dashboard = () => {
   return (
     <>
       {/* Mobile and MD Devices Dropdown */}
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <div className="flex justify-between mx-8">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -41,7 +50,7 @@ const Dashboard = () => {
         <div className="-mx-6 px-6 py-4">
             <a href="#" title="home">
               <img
-                src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg"
+                src="https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/images/about-us/website/mo_master_black_mono_for_light_backg_rbg.png"
                 className="w-32"
                 alt="tailus logo"
               />
@@ -71,7 +80,7 @@ const Dashboard = () => {
                   className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400"
                 >
                  
-                  <span className="-mr-1 font-medium">Dashboard</span>
+                 <Link to={'/dashboard/employee-list'} className="-mr-1 font-medium">All Employee</Link>
                 </a>
               </li>
               <li>
@@ -80,7 +89,7 @@ const Dashboard = () => {
                   className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
                 >
                  
-                  <span className="group-hover:text-gray-700">Categories</span>
+                  <Link to={'/work-sheet'} className="group-hover:text-gray-700">Work Sheet</Link>
                 </a>
               </li>
               <li>
@@ -89,16 +98,18 @@ const Dashboard = () => {
                   className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
                 >
                   
-                  <span className="group-hover:text-gray-700">Reports</span>
+                  <Link to={'/payment-history'} className="group-hover:text-gray-700">Payment History</Link>
                 </a>
               </li>
+
+              {/* Hr */}
               <li>
                 <a
                   href="#"
                   className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
                 >
                  
-                  <span className="group-hover:text-gray-700">Other data</span>
+                  <Link to={'/employee-list'} className="group-hover:text-gray-700">All Employee</Link>
                 </a>
               </li>
               <li>
@@ -115,7 +126,7 @@ const Dashboard = () => {
             <div className="mt-4 pt-4 flex justify-between items-center border-t">
               <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
                 
-                <span className="group-hover:text-gray-700">Logout</span>
+                <span onClick={handleLogOut} className="group-hover:text-gray-700">Logout</span>
               </button>
             </div>
           </div>
@@ -128,7 +139,7 @@ const Dashboard = () => {
           <div className="-mx-6 px-6 py-4">
             <a href="#" title="home">
               <img
-                src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg"
+                src="https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/images/about-us/website/mo_master_black_mono_for_light_backg_rbg.png"
                 className="w-32"
                 alt="tailus logo"
               />
@@ -167,7 +178,7 @@ const Dashboard = () => {
                     className="fill-current group-hover:text-sky-300"
                   />
                 </svg>
-                <span className="-mr-1 font-medium">Dashboard</span>
+                <Link to={'/dashboard/employee-list'} className="-mr-1 font-medium">All Employee</Link>
               </a>
             </li>
             <li>
@@ -287,7 +298,7 @@ const Dashboard = () => {
                 d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
               />
             </svg>
-            <span className="group-hover:text-gray-700">Logout</span>
+            <span onClick={handleLogOut} className="group-hover:text-gray-700">Logout</span>
           </button>
         </div>
       </aside>
@@ -296,4 +307,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardMenu;
