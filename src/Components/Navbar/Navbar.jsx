@@ -34,17 +34,15 @@ const Navbar = () => {
           </div>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
             <li><Link to={'/dashboard'}>Dashboard</Link></li>
-            <li><Link to={'/touristSpot'}>All Tourists Spot</Link></li>
-            <li><Link to={'/login'}>Login</Link></li>
+            <li><Link to={'/contactUs'}>Contact us</Link></li>
           </ul>
         </div>
-        <Link to={'/'} className="btn btn-ghost md:text-5xl text-3xl font-semibold"><span className="text-gray-900">SK</span><span className="text-orange-500">Limited</span> </Link>
+        <Link to={'/'} className="btn btn-ghost md:text-5xl text-3xl font-semibold"><img className="w-48" src="https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/images/about-us/website/mo_master_black_mono_for_light_backg_rbg.png" alt="" /> </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 font-normal md:text-base">
-          <li><Link to={'/'}>Dashboard</Link></li>
-          <li><Link to={'/touristSpot'}>All Tourists Spot</Link></li>
-          <li><Link to={'/login'}>Login</Link></li>
+          <li><Link to={'/dashboard'}>Dashboard</Link></li>
+          <li><Link to={'/contactUs'}>Contact us</Link></li>
           
           
         </ul>
