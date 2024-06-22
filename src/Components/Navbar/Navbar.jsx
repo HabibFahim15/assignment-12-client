@@ -51,11 +51,11 @@ const Navbar = () => {
         <div className="avatar flex gap-1 md:gap-3">
           {user && (
             <div>
-              <div className="md:w-12 w-12 h-12 md:h-20">
+              <div className="md:w-16 w-12 h-12 md:h-16">
               <img className="rounded-full " onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} src={photoURL} alt="User Avtar" />
               </div>
               {open && (
-                <div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} className="absolute top-10 right-1 w-60 h-36 bg-white border border-gray-400 p-4 rounded-2xl">
+                <div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} className="absolute top-10 right-1 w-60 h-40 bg-white border border-gray-400 p-4 rounded-2xl">
                   <ul className="gap-1 font-semibold grid grid-cols">
                     <li className=" flex justify-between">Name: {displayName}</li>
                     <li className=" flex justify-between">Email:  {email}</li>

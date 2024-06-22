@@ -17,8 +17,8 @@ const SocialLogin = () => {
           photoUrl: result.user?.photoURL,
           role: 'employee',
           isVerified: false,
-          bank_account_no: '0',
-          salary: '0',
+          bank_account_no: result.user?.createdAt,
+          salary: '20000',
           Designation: 'digital marketing'
         }
         axiosPublic.post ('/users', userInfo)
