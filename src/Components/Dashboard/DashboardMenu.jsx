@@ -5,15 +5,18 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { FaBookOpen, FaHistory } from "react-icons/fa";
 import { GrContact } from "react-icons/gr";
+import useAdmin from "../../hooks/useAdmin";
+import useHr from "../../hooks/useHr";
+import useEmployee from "../../hooks/useEmployee";
 
 const DashboardMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, signout } = useContext(AuthContext)
 
 
-  const isEmployee = false;
-  const isHr = false;
-  const isAdmin = true;
+  const [isEmployee] = useEmployee();
+  const [isHr] = useHr();
+  const [isAdmin] = useAdmin();
 
   const handleLogOut = () => {
     signout()
@@ -57,13 +60,13 @@ const DashboardMenu = () => {
             </svg>
           </button>
           <div className="-mx-6 px-6 py-4">
-            <a  title="home">
+            <Link to='/' title="home">
               <img
                 src="https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/images/about-us/website/mo_master_black_mono_for_light_backg_rbg.png"
                 className="w-32"
                 alt="tailus logo"
               />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -116,7 +119,8 @@ const DashboardMenu = () => {
                     </a>
                   </li>
                 </>
-                  : isEmployee ? <>
+                  : 
+                   isHr ? <>
                     <li>
                       <a
                         
@@ -135,7 +139,8 @@ const DashboardMenu = () => {
                         <Link to={'/dashboard/progress'} className="-mr-1 font-medium">Progress</Link>
                       </a>
                     </li>
-                  </> : isHr ? <>
+                  </> :
+                   isEmployee ? <>
                     <li>
                       <a
                         
@@ -199,13 +204,13 @@ const DashboardMenu = () => {
       <aside className="hidden md:flex md:ml-[-50%] fixed z-10 top-0 pb-3 px-6 w-4/6 flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
         <div>
           <div className="-mx-6 px-6 py-4">
-            <a  title="home">
+            <Link to='/'  title="home">
               <img
                 src="https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/images/about-us/website/mo_master_black_mono_for_light_backg_rbg.png"
                 className="w-32"
                 alt="tailus logo"
               />
-            </a>
+            </Link>
           </div>
 
           <div className="mt-8 text-center">
@@ -221,47 +226,26 @@ const DashboardMenu = () => {
           </div>
 
           <ul className="space-y-2 tracking-wide mt-8">
-            <li>
-              <a
-                
-                className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400"
-              >
+              <li>
+                <a
+                  
+                  className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400"
+                >
 
-                <Link to={'/dashboard'} className="-mr-1 font-medium">Dashboard</Link>
-              </a>
-            </li>
+                  <Link to={'/dashboard'} className="-mr-1 font-medium">Dashboard</Link>
+                </a>
+              </li>
 
-            {
-              isAdmin ? <>{/* admin */}
-                <li>
-                  <a
-                    
-                    className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
-                  >
-                    <HiMiniUserGroup />
-
-                    <Link to={'/dashboard/all-employee-list'} className="-mr-1 font-medium">All Employee</Link>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    
-                    className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
-                  >
-                    <GrContact />
-
-                    <Link to={'/dashboard/contact-us'} className="-mr-1 font-medium">Contact Us</Link>
-                  </a>
-                </li>
-              </>
-                : isEmployee ? <>
+              {
+                isAdmin ? <>{/* admin */}
                   <li>
                     <a
                       
                       className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
                     >
-                      <FaUserGroup />
-                      <Link to={'/dashboard/employee-list'} className="-mr-1 font-medium">Employee</Link>
+                      <HiMiniUserGroup />
+
+                      <Link to={'/dashboard/all-employee-list'} className="-mr-1 font-medium">All Employee</Link>
                     </a>
                   </li>
                   <li>
@@ -269,59 +253,82 @@ const DashboardMenu = () => {
                       
                       className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
                     >
-                      <FaBookOpen />
-                      <Link to={'/dashboard/progress'} className="-mr-1 font-medium">Progress</Link>
+                      <GrContact />
+
+                      <Link to={'/dashboard/contact-us'} className="-mr-1 font-medium">Contact Us</Link>
                     </a>
                   </li>
-                </> : isHr ? <>
-                  <li>
-                    <a
-                      
-                      className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
+                </>
+                  : 
+                   isHr ? <>
+                    <li>
+                      <a
+                        
+                        className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
                       >
-                        <path
-                          className="fill-current text-gray-600 group-hover:text-cyan-600"
-                          fillRule="evenodd"
-                          d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-                          clipRule="evenodd"
-                        />
-                        <path
-                          className="fill-current text-gray-300 group-hover:text-cyan-300"
-                          d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
-                        />
-                      </svg>
-                      <Link to={'/dashboard/work-sheet'} className="group-hover:text-gray-700">Work Sheet</Link>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      
-                      className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
-                    >
-                      <FaHistory />
-                      <Link to={'/payment-history'} className="group-hover:text-gray-700">Payment History</Link>
-                    </a>
-                  </li></> : <></>
-            }
+                        <FaUserGroup />
+                        <Link to={'/dashboard/employee-list'} className="-mr-1 font-medium">Employee</Link>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        
+                        className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+                      >
+                        <FaBookOpen />
+                        <Link to={'/dashboard/progress'} className="-mr-1 font-medium">Progress</Link>
+                      </a>
+                    </li>
+                  </> :
+                   isEmployee ? <>
+                    <li>
+                      <a
+                        
+                        className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            className="fill-current text-gray-600 group-hover:text-cyan-600"
+                            fillRule="evenodd"
+                            d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+                            clipRule="evenodd"
+                          />
+                          <path
+                            className="fill-current text-gray-300 group-hover:text-cyan-300"
+                            d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
+                          />
+                        </svg>
+                        <Link to={'/dashboard/work-sheet'} className="group-hover:text-gray-700">Work Sheet</Link>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        
+                        className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+                      >
+                        <FaHistory />
+                        <Link to={'/payment-history'} className="group-hover:text-gray-700">Payment History</Link>
+                      </a>
+                    </li></> : <></>
+              }
 
 
 
-            {/* employee */}
+              {/* employee */}
 
-            {/* hr */}
-
-
+              {/* hr */}
 
 
 
 
-          </ul>
+
+
+            </ul>
         </div>
 
         <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">

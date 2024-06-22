@@ -1,16 +1,28 @@
+import { useQuery } from "@tanstack/react-query";
 import EmployeeTable from "../../../Components/Dashboard/EmployeeTable";
-import userList from "../../../hooks/userList";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Users = () => {
-  const [employee, loading] = userList();
-  if(loading){
+
+
+  const axiosSecure = useAxiosSecure()
+ const {data: users = [], refetch, isLoading} = useQuery({
+  queryKey: ['users'],
+  queryFn: async()=>{
+      const res = await axiosSecure.get('/users');
+      return res.data
+  }
+ })
+
+
+  if(isLoading){
     return (
       <div className="w-full min-h-svh flex justify-center items-center">
         <span className="loading loading-spinner loading-lg"></span>
       </div>
     )
   }
-  const employees = employee.filter(item => item.role === 'employee')
+  const employees = users.filter(item => item.role === 'employee')
   console.log(employees);
   return (
     <div className="overflow-x-auto">
@@ -31,7 +43,7 @@ const Users = () => {
     <tbody>
       {/* row 1 */}
       {
-        employees.map(item => <EmployeeTable key={item._id} item={item}></EmployeeTable>)
+        employees.map(item => <EmployeeTable key={item._id} item={item} refetch={refetch}></EmployeeTable>)
       }
       
     </tbody>

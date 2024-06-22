@@ -1,9 +1,10 @@
 import Swal from 'sweetalert2'
-import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+
 
 const UserData = ({item, refetch}) => {
-  const axiosSecure = useAxiosPublic()
-  const {_id,displayName,bank_account_no,salary,role,photoUrl,email} =item;
+  const axiosSecure = useAxiosSecure()
+  const {_id,displayName,bank_account_no,salary,role,photoUrl,email} = item;
 
   const handleMakeHr = () =>{
     axiosSecure.patch(`/users/hr/${_id}`)
