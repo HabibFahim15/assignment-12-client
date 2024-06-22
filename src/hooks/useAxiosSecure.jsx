@@ -4,7 +4,7 @@ import axios from "axios";
   baseURL: 'http://localhost:5000'
 })
 const useAxiosSecure = () => {
- return axiosSecure;
+ return axiosSecure 
 };
 
 export default useAxiosSecure;
