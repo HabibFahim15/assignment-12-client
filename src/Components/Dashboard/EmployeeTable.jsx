@@ -70,7 +70,7 @@ const EmployeeTable = ({ item, refetch }) => {
           <h3 className="font-bold my-4 text-lg">Payable Salary {salary}</h3>
           {/* content */}
           <Elements stripe={stripePromise}>
-            <CheckoutForm salary={salary} />
+            <CheckoutForm salary={salary} _id={_id} email={email} />
           </Elements>
 
           <div className="modal-action">

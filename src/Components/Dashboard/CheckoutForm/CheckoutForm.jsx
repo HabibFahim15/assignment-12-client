@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../Providers/AuthProvider";
 
-const CheckOutForm = ({salary}) => {
+const CheckOutForm = ({salary, _id, email}) => {
   const [error, setError] =useState('')
   const [clientSecret, setClientSecret] =useState('')
   const [transactionId, setTransactionId] =useState('')
@@ -64,7 +64,17 @@ const CheckOutForm = ({salary}) => {
           setTransactionId(paymentIntent.id)
 
           // payment sending database
+          const payment = {
+            email: email,
+            price: salary,
+            id: _id,
+            transactionId: paymentIntent.id,
+            date: new Date(),
+            status: 'paid'
 
+          }
+         const res = await axiosSecure.post('/payments', payment)
+         console.log(res);
 
         }
       }
