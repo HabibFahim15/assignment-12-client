@@ -14,6 +14,8 @@ import Users from "../Pages/Dashboard/Users/Users";
 import ContactUs from "../Pages/Dashboard/ContactUs/ContactUs";
 import Progress from "../Pages/Dashboard/Progress/Progress";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import WorkSheet from "../Pages/Dashboard/WorkSheet/WorkSheet";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -40,7 +42,15 @@ export const router = createBrowserRouter([
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children:[
       // employee
+      {
+        path: 'work-sheet',
+        element: <WorkSheet></WorkSheet>
+      },
+      {
+        path: 'payment-history',
+        element: <PaymentHistory></PaymentHistory>
 
+      },
 
       // Hr routes
       {

@@ -172,7 +172,8 @@ const DashboardMenu = () => {
                         className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
                       >
                         <FaHistory />
-                        <Link to={'/payment-history'} className="group-hover:text-gray-700">Payment History</Link>
+                        <Link to={'/dashboard/payment-history'} 
+                        className="group-hover:text-gray-700">Payment History</Link>
                       </a>
                     </li></> : <></>
               }
@@ -312,7 +313,8 @@ const DashboardMenu = () => {
                         className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
                       >
                         <FaHistory />
-                        <Link to={'/payment-history'} className="group-hover:text-gray-700">Payment History</Link>
+                        <Link to={'/dashboard/payment-history'} 
+                        className="group-hover:text-gray-700">Payment History</Link>
                       </a>
                     </li></> : <></>
               }
