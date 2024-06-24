@@ -23,7 +23,9 @@ const Users = () => {
   const employees = users.filter(item => item.role === 'employee');
 
   return (
-    <div className="overflow-x-auto">
+    <div>
+      <h1 className="text-4xl mt-3 mb-8 font-semibold text-center">Progress</h1>
+      <div className="overflow-x-auto">
       <table className="table">
         <thead>
           <tr>
@@ -42,6 +44,7 @@ const Users = () => {
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };
