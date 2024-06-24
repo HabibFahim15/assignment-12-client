@@ -17,7 +17,6 @@ const WorkSheet = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
   } = useForm()
 
   const onSubmit = (data) => {
@@ -60,7 +59,7 @@ const WorkSheet = () => {
 
 
   }
-  const { data: workTime = [], refetch, isLoading } = useQuery({
+  const { data: workTime = [], refetch } = useQuery({
     queryKey: ['work'],
     queryFn: async () => {
       const res = await axiosPublic.get('/work');
@@ -121,6 +120,7 @@ console.log(workTime);
         <th>Task</th>
         <th>Work Time</th>
         <th>Date</th>
+        <th>Title</th>
         <th></th>
       </tr>
     </thead>

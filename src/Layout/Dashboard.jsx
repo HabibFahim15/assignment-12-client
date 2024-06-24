@@ -8,10 +8,12 @@ const Dashboard = () => {
       <div >
         <DashboardMenu></DashboardMenu>
       </div>
-        <div className='flex-1 lg:ml-72'>
-          <Outlet></Outlet>
-        </div>
+
       
+      <div className='flex-1 lg:ml-72'>
+        <Outlet></Outlet>
+      </div>
+
     </div>
   );
 };

@@ -17,6 +17,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import WorkSheet from "../Pages/Dashboard/WorkSheet/WorkSheet";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import DashBoardStat from "../Components/Dashboard/DashBoardStat";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
     path:'dashboard',
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children:[
+      {
+        path: '/dashboard',
+        element: <DashBoardStat></DashBoardStat>
+      },
       // employee
       {
         path: 'work-sheet',
