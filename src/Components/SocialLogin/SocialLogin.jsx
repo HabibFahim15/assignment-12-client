@@ -19,7 +19,8 @@ const SocialLogin = () => {
           isVerified: false,
           bank_account_no: result.user?.createdAt,
           salary: '20000',
-          Designation: 'digital marketing'
+          Designation: 'digital marketing',
+          status: 'in'
         }
         axiosPublic.post ('/users', userInfo)
         .then(res =>{

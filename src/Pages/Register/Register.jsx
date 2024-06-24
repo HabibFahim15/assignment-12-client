@@ -33,7 +33,8 @@ const Register = () => {
               isVerified: false,
               bank_account_no: data.bank,
               salary: data.salary,
-              Designation: data.designation
+              Designation: data.designation,
+              status: 'in',
             }
             axiosPublic.post('/users', userInfo)
               .then(res => {

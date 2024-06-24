@@ -50,8 +50,8 @@ const Navbar = () => {
       <div className="navbar-end flex md:gap-2 ">
         <div className="avatar flex gap-1 md:gap-3">
           {user && (
-            <div>
-              <div className="md:w-16 w-12 h-12 md:h-16">
+            <div className="z-50">
+              <div className="md:w-16 w-12 h-12 md:h-16 ">
               <img className="rounded-full " onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} src={photoURL} alt="User Avtar" />
               </div>
               {open && (
