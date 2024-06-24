@@ -4,14 +4,14 @@ const Banner = () => {
   return (
     <Carousel>
                 <div>
-                    <img src="https://asset.gallup.com/p/WORKPLACEV9CMS/49821ce7-b62a-4bcb-9013-0a21bed58ed5.jpg" />
+                    <img src="https://www.searchenginejournal.com/wp-content/uploads/2022/04/office-workers-not-happy-626feb3bdfe8f-sej-1280x720.png" />
                    
                 </div>
                 <div>
-                    <img src="https://media.istockphoto.com/id/1283955441/photo/smiling-female-employee-sit-in-coworking-space-and-working-on-the-project.jpg?s=612x612&w=0&k=20&c=KpqbMuAtZ9ahPR09cvX1dNFY1qGqU4IQLY-Y9C45RkE=" />
+                    <img src="https://cdn-res.keymedia.com/cms/images/us/037/0292_637595469743067605.jpg" />
                 </div>
                 <div>
-                    <img src="https://st3.depositphotos.com/9880800/17524/i/450/depositphotos_175242348-stock-photo-happy-colleagues-having-fun-modern.jpg" />
+                    <img src="https://asset.gallup.com/p/WORKPLACEV9CMS/49821ce7-b62a-4bcb-9013-0a21bed58ed5.jpg" />
                 </div>
             </Carousel>
   )

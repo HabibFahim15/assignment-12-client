@@ -17,7 +17,7 @@ const Register = () => {
 
 
   const onSubmit = async(data) => {
-    console.log(data);
+    // console.log(data);
     // imgae upload imgbb and get url 
     const imageFile ={image: data.image[0]}
     const res = await axiosPublic.post(image_hosting_api, imageFile,{
@@ -25,7 +25,7 @@ const Register = () => {
         'Content-Type': 'multipart/form-data'
       }
     })
-    console.log(res.data);
+    // console.log(res.data);
     if(res.data.success){
       createUser(data.email, data.password)
       .then(result => {

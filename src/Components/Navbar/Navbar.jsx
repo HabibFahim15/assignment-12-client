@@ -21,6 +21,7 @@ const Navbar = () => {
   });
 
   const isUserVerified = users.some(item => item.email === user?.email && item.isVerified);
+  
 
   const handleLogOut = () => {
     signout()
@@ -30,11 +31,21 @@ const Navbar = () => {
 
   const handleDashboardClick = (event) => {
     if (!isUserVerified) {
-      event.preventDefault(); // Prevent the default navigation behavior
-      setShowWarning(true); // Show the warning message
+      event.preventDefault(); 
+      setShowWarning(true);
+      if(showWarning ){
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Wait until varification Done",
+          showConfirmButton: false,
+          timer: 2500
+        });
+      }
+      
     } else {
       setShowWarning(false);
-      navigate('/dashboard'); // Navigate to the dashboard
+      navigate('/dashboard'); 
     }
   };
 
@@ -42,15 +53,7 @@ const Navbar = () => {
   let email = user?.email || "";
   let photoURL = user?.photoURL || "";
 
-  if(showWarning ){
-    Swal.fire({
-      position: "top-end",
-      icon: "error",
-      title: "Wait until varification Done",
-      showConfirmButton: false,
-      timer: 2500
-    });
-  }
+  
   return (
     <div>
       <div className="navbar rounded-3xl bg-gray-200">
@@ -62,8 +65,10 @@ const Navbar = () => {
               </svg>
             </div>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+            <li><Link to='/'>Home</Link></li>
             <li><Link to='/dashboard' onClick={handleDashboardClick}>Dashboard</Link></li>
               <li><Link to='/contactUs'>Contact us</Link></li>
+              
             </ul>
           </div>
           <Link to='/' className="btn btn-ghost md:text-5xl text-3xl font-semibold">
@@ -72,8 +77,9 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-normal md:text-base">
+          <li><Link to='/'>Home</Link></li>
             <li><Link to='/dashboard' onClick={handleDashboardClick}>Dashboard</Link></li>
-            <li><Link to='/contactUs'>Contact us</Link></li>
+              <li><Link to='/contactUs'>Contact us</Link></li>
           </ul>
         </div>
         <div className="navbar-end flex md:gap-2">
