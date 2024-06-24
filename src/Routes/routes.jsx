@@ -21,6 +21,7 @@ import DashBoardStat from "../Components/Dashboard/DashBoardStat";
 import AdminRoute from "./AdminRoute";
 import HrRoute from "./HrRoute";
 import EmployeeRoute from "./EmployeeRoute";
+import EmployeeDetails from "../Components/EmployeeDetails/EmployeeDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
       {
         path: 'employee-list',
         element: <HrRoute><Users></Users></HrRoute>
+      },
+      {
+        path: 'employee-list/details/:id',
+        element: <EmployeeDetails></EmployeeDetails>
       },
 
       // admin routes

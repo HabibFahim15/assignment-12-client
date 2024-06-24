@@ -17,7 +17,7 @@ const AllUsers = () => {
  const isUserVerified = users.filter(item => item.isVerified === true && item.role !== 'admin')
   return (
     <div>
-      <h1>This is all users: {isUserVerified.length}</h1>
+      <h1 className="text-4xl my-4 font-semibold text-center">All Varifyed Users: {isUserVerified.length}</h1>
       <table className="table">
     {/* head */}
     <thead>
