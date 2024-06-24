@@ -1,7 +1,7 @@
 import { FaUserGroup } from "react-icons/fa6";
 import { HiMiniUserGroup } from "react-icons/hi2";
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { FaBookOpen, FaHistory } from "react-icons/fa";
 import { GrContact } from "react-icons/gr";
@@ -10,6 +10,7 @@ import useHr from "../../hooks/useHr";
 import useEmployee from "../../hooks/useEmployee";
 
 const DashboardMenu = () => {
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false);
   const { user, signout } = useContext(AuthContext)
 
@@ -21,7 +22,7 @@ const DashboardMenu = () => {
   const handleLogOut = () => {
     signout()
       .then(() => {
-
+        navigate('/')
       })
       .catch(error => console.log(error));
   };
@@ -108,16 +109,7 @@ const DashboardMenu = () => {
                       <Link to={'/dashboard/all-employee-list'} className="-mr-1 font-medium">All Employee</Link>
                     </a>
                   </li>
-                  <li>
-                    <a
-                      
-                      className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
-                    >
-                      <GrContact />
-
-                      <Link to={'/dashboard/contact-us'} className="-mr-1 font-medium">Contact Us</Link>
-                    </a>
-                  </li>
+                  
                 </>
                   : 
                    isHr ? <>
@@ -249,16 +241,7 @@ const DashboardMenu = () => {
                       <Link to={'/dashboard/all-employee-list'} className="-mr-1 font-medium">All Employee</Link>
                     </a>
                   </li>
-                  <li>
-                    <a
-                      
-                      className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
-                    >
-                      <GrContact />
-
-                      <Link to={'/dashboard/contact-us'} className="-mr-1 font-medium">Contact Us</Link>
-                    </a>
-                  </li>
+                  
                 </>
                   : 
                    isHr ? <>

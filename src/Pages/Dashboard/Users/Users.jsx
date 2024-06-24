@@ -3,7 +3,6 @@ import EmployeeTable from "../../../Components/Dashboard/EmployeeTable";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Users = () => {
-
   const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch, isLoading } = useQuery({
     queryKey: ['users'],

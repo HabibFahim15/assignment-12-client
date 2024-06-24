@@ -11,6 +11,9 @@ const PaymentHistoryTable = ({item}) => {
     <td>
       {item.transactionId}
     </td>
+    <td className="text-green-600 font-semibold uppercase text-base">
+      {item.status}
+    </td>
   </tr>
   );
 };

@@ -11,11 +11,12 @@ import ErrorPage from "../Pages/Error/ErrorPage";
 import Dashboard from "../Layout/Dashboard";
 import Users from "../Pages/Dashboard/Users/Users";
 
-import ContactUs from "../Pages/Dashboard/ContactUs/ContactUs";
+
 import Progress from "../Pages/Dashboard/Progress/Progress";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import WorkSheet from "../Pages/Dashboard/WorkSheet/WorkSheet";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
         path: '/register',
         element: <Register />
       },
+      {
+        path: '/contactUs',
+        element: <ContactUs></ContactUs>
+      }
      
     ]
   },

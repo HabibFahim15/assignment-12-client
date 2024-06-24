@@ -35,6 +35,7 @@ const PaymentHistory = salary.filter(item => item.email === user.email)
           <th>Month</th>
           <th>Amount</th>
           <th>Transaction Id</th>
+          <th>Status</th>
           
         </tr>
       </thead>
