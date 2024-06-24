@@ -8,7 +8,7 @@ const useHr = () => {
   const axiosSecure = useAxiosSecure()
   const {user} = useContext(AuthContext);
   
-  const {data: isHr} = useQuery({
+  const {data: isHr, isPending:isHrLoading} = useQuery({
     queryKey: [user?.email, 'isHr'],
     queryFn: async() =>{
       const res = await axiosSecure.get(`/users/hr/${user.email}`);
@@ -16,7 +16,7 @@ const useHr = () => {
       return res.data?.hr
     }
   })
-  return [isHr]
+  return [isHr,isHrLoading]
 };
 
 export default useHr;

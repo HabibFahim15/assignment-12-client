@@ -8,7 +8,7 @@ const useEmployee = () => {
   const axiosSecure = useAxiosSecure()
   const {user} = useContext(AuthContext);
   
-  const {data: isEmployee} = useQuery({
+  const {data: isEmployee,  isPending:isEmployeeLoading} = useQuery({
     queryKey: [user?.email, 'isEmployee'],
     queryFn: async() =>{
       const res = await axiosSecure.get(`/users/employee/${user.email}`);
@@ -16,7 +16,7 @@ const useEmployee = () => {
       return res.data?.employee
     }
   })
-  return [isEmployee]
+  return [isEmployee,isEmployeeLoading]
 };
 
 export default useEmployee;

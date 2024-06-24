@@ -6,6 +6,9 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const Register = () => {
   const { register, handleSubmit, reset, formState: { errors }, } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext)
@@ -13,22 +16,31 @@ const Register = () => {
   const navigate = useNavigate()
 
 
-  const onSubmit = data => {
+  const onSubmit = async(data) => {
     console.log(data);
-    createUser(data.email, data.password)
+    // imgae upload imgbb and get url 
+    const imageFile ={image: data.image[0]}
+    const res = await axiosPublic.post(image_hosting_api, imageFile,{
+      headers:{
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    console.log(res.data);
+    if(res.data.success){
+      createUser(data.email, data.password)
       .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
 
 
-        updateUserProfile(data.name, data.photoURL)
+        updateUserProfile(data.name, res.data.data.display_url)
           .then(() => {
             // create user entry in the database
 
             const userInfo = {
               displayName: data.name,
               email: data.email,
-              photoUrl: data.photoURL,
+              photoUrl: res.data.data.display_url,
               role: data.role,
               isVerified: false,
               bank_account_no: data.bank,
@@ -63,6 +75,8 @@ const Register = () => {
           })
           .catch(error => console.log(error))
       })
+    }
+    
   }
 
 
@@ -98,18 +112,8 @@ const Register = () => {
 
             {/* TODO: import image */}
             <div className="flex flex-col mb-6">
-              <label className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Your Image:</label>
-              <div className="relative">
-                <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-                  <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                  </svg>
-                </div>
-
-                <input type="text"  {...register("photoURL", { required: true })} className="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Image URL" />
-                {errors.photoURL && <span className="text-red-600">Photo URL is required</span>}
-              </div>
-             
+            <input {...register('image')} type="file" className="file-input file-input-bordered w-full max-w-xs" />
+              
             </div>
             <div className="flex flex-col mb-6">
               <label className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Your Bank:</label>

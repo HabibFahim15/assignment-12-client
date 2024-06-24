@@ -18,6 +18,9 @@ import WorkSheet from "../Pages/Dashboard/WorkSheet/WorkSheet";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import DashBoardStat from "../Components/Dashboard/DashBoardStat";
+import AdminRoute from "./AdminRoute";
+import HrRoute from "./HrRoute";
+import EmployeeRoute from "./EmployeeRoute";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -54,28 +57,28 @@ export const router = createBrowserRouter([
       // employee
       {
         path: 'work-sheet',
-        element: <WorkSheet></WorkSheet>
+        element: <EmployeeRoute><WorkSheet></WorkSheet></EmployeeRoute>
       },
       {
         path: 'payment-history',
-        element: <PaymentHistory></PaymentHistory>
+        element: <EmployeeRoute><PaymentHistory></PaymentHistory></EmployeeRoute>
 
       },
 
       // Hr routes
       {
         path: 'progress',
-        element: <Progress></Progress>
+        element: <HrRoute><Progress></Progress></HrRoute>
       },
       {
         path: 'employee-list',
-        element: <Users></Users>
+        element: <HrRoute><Users></Users></HrRoute>
       },
 
       // admin routes
       {
         path: 'all-employee-list',
-        element: <AllUsers></AllUsers>
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
       {
         path: 'contact-us',

@@ -15,87 +15,91 @@ const Progress = () => {
       return res.data;
     }
   });
-  const onSubmit = (data) =>{
-console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
   }
   return (
     <div>
-      <h1>this is Progress</h1>
+      <h1 className="text-5xl font-semibold text-center my-8">Progress</h1>
       <div className="overflow-x-auto">
         <div >
-        <form className="flex justify-between px-20" onSubmit={handleSubmit(onSubmit)} action="https://api.web3forms.com/submit" >
-        <div className="flex flex-col mb-6">
-    <label className="my-2 font-semibold">Search By Name</label>
-    <select className="peer block w-full appearance-none border  border-gray-500 bg-transparent py-2.5 px-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" {...register("employeeName")}>
+          <form  onSubmit={handleSubmit(onSubmit)} action="https://api.web3forms.com/submit" >
+            
+            <div className="flex justify-between px-20">
+<div className="flex flex-col mb-6">
+              <label className="my-2 font-semibold">Search By Name</label>
+              <select className="peer block w-full appearance-none border  border-gray-500 bg-transparent py-2.5 px-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" {...register("employeeName")}>
 
-      <option value="Sales">Sales</option>
-      
-    </select>
+                <option value="">Search By Name</option>
+                <option value="Sales">Sales</option>
 
-  </div>
-  <div className="flex flex-col mb-6">
-    <label className="my-2 font-semibold">Per Month work</label>
-    <select className="peer block w-full appearance-none border  border-gray-500 bg-transparent py-2.5 px-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" {...register("month")}>
-      <option value="January">January</option>
-      <option value="February">February</option>
-      <option value="March">March</option>
-      <option value="April">April</option>
-      <option value="May">May</option>
-      <option value="June">June</option>
-      <option value="July">July</option>
-      <option value="August">August</option>
-      <option value="September">September</option>
-      <option value="October">October</option>
-      <option value="November">November</option>
-      <option value="December">December</option>
-      
-    </select>
+              </select>
 
-  </div> 
-  
+            </div>
+            <div className="flex flex-col mb-6">
+              <label className="my-2 font-semibold">Per Month work</label>
+              <select className="peer block w-full appearance-none border  border-gray-500 bg-transparent py-2.5 px-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" {...register("month")}>
+                <option value="">Search By Month</option>
+                <option value="January">January</option>
+                <option value="February">February</option>
+                <option value="March">March</option>
+                <option value="April">April</option>
+                <option value="May">May</option>
+                <option value="June">June</option>
+                <option value="July">July</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="October">October</option>
+                <option value="November">November</option>
+                <option value="December">December</option>
 
-        </form>
-        <div className="flex justify-end mr-20">
-        <input type="submit" className="mt-5 rounded-md bg-black px-6 py-2 text-white" />
+              </select>
+
+            </div>
+            </div>
+            <div className="flex justify-end mr-20">
+              <input value={'Search'} type="submit" className="mt-5 rounded-md bg-black px-6 py-2 text-white" />
+
+            </div>
+          </form>
 
         </div>
-        </div>
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        
-        <th>Task</th>
-        <th>Work Time</th>
-        <th>Date</th>
-        <th>Title</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    {
-      workTime.map(item=>(
-        <tr key={item._id}>
-        <td>
-          {item.task}
-        </td>
-        <td>
-          {item.workTime}
-        </td>
-        <td>
-                {item.date.substring(0, 10)}
-              </td>
-        <td>
-                {item.title.substring(0, 200)}
-              </td>
-        
-      </tr>
-      ))
-    }
-    </tbody>
-    
-  </table>
-</div>
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+
+              <th>Task</th>
+              <th>Work Time</th>
+              <th>Date</th>
+              <th>Title</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              workTime.map(item => (
+                <tr key={item._id}>
+                  <td>
+                    {item.task}
+                  </td>
+                  <td>
+                    {item.workTime}
+                  </td>
+                  <td>
+                    {item.date.substring(0, 10)}
+                  </td>
+                  <td>
+                    {item.title.substring(0, 200)}
+                  </td>
+
+                </tr>
+              ))
+            }
+          </tbody>
+
+        </table>
+      </div>
     </div>
   );
 };
