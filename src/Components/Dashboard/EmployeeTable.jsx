@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { FaXmark } from "react-icons/fa6";
-import { FcCheckmark } from "react-icons/fc";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import Swal from "sweetalert2";
-import UserModal from "./UserModal";
+import  { useEffect, useState } from 'react';
+import { FaXmark } from 'react-icons/fa6';
+import { FcCheckmark } from 'react-icons/fc';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
+import UserModal from './UserModal';
 
 const EmployeeTable = ({ item, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -11,14 +11,26 @@ const EmployeeTable = ({ item, refetch }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [hasPaid, setHasPaid] = useState(false);
-console.log(hasPaid);
+  const [hasPaid, setHasPaid] = useState(false); // Track payment statusbutton after payment
+
   useEffect(() => {
-    const checkPaymentStatus = async () => {
-      const response = await axiosSecure.get(`/payments/check/${_id}`);
-      setHasPaid(response.data.paid);
+    const fetchPaymentStatus = async () => {
+      try {
+        const response = await axiosSecure.get(`/payments/${email}`);
+        const { email: payedEmail } = response.data;
+
+        if(email === payedEmail){
+         return setHasPaid(true)
+        }
+        return setHasPaid(false)
+
+      } catch (error) {
+        console.error('Error fetching payment status:', error);
+        // Handle error fetching payment status
+      }
     };
-    checkPaymentStatus();
+
+    fetchPaymentStatus();
   }, [axiosSecure, _id]);
 
   const handleVerified = () => {
@@ -26,14 +38,16 @@ console.log(hasPaid);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
-          icon: "success",
+          icon: 'success',
           title: `${displayName} is Verified`,
-          position: "top-end",
+          position: 'top-end',
           showConfirmButton: false,
           timer: 3000,
           toast: true,
           timerProgressBar: true,
         });
+        setHasPaid(true); // Simulate setting paid status
+         
       }
     });
   };
@@ -65,9 +79,11 @@ console.log(hasPaid);
         <td>{email}</td>
         <td>{salary}</td>
         <td>{bank_account_no}</td>
-        {isVerified ? (
+        {!hasPaid ? (
           <th>
-            <button className="btn" onClick={handleOpenModal} disabled={hasPaid}>Pay Now</button>
+            <button className="btn" onClick={handleOpenModal} disabled={hasPaid }>
+              Pay Now
+            </button>
           </th>
         ) : (
           <p className="text-center flex">Not Payable</p>
@@ -86,7 +102,7 @@ console.log(hasPaid);
           </button>
         </th>
         <th>
-          <button className="btn btn-ghost btn-xs" >details</button>
+          <button className="btn btn-ghost btn-xs">details</button>
         </th>
       </tr>
       {isModalOpen && <UserModal user={selectedUser} onClose={handleCloseModal} />}
