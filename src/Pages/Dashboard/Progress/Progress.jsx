@@ -6,14 +6,14 @@ import { useState, useEffect } from "react";
 const Progress = () => {
   const { register, handleSubmit } = useForm();
   const axiosSecure = useAxiosSecure();
-  const { data: workTime = [] } = useQuery({
+  const { data: workTime = [],refetch } = useQuery({
     queryKey: ['work'],
     queryFn: async () => {
       const res = await axiosSecure.get('/work');
       return res.data;
     }
   });
-
+  refetch()
   const [filteredData, setFilteredData] = useState(workTime);
   const [uniqueNames, setUniqueNames] = useState([]);
 
@@ -32,10 +32,10 @@ const Progress = () => {
 
       const nameMatches = employeeName ? item.name === employeeName : true;
       const monthMatches = month ? itemMonth === month : true;
-
+      refetch()
       return nameMatches && monthMatches;
     });
-
+    refetch()
     setFilteredData(filtered);
   };
 

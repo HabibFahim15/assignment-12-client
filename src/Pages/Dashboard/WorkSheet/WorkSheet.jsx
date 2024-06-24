@@ -87,15 +87,16 @@ const WorkSheet = () => {
 
               <div className="relative z-0 gap-8">
                 <label className="absolute top-3 z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600">Date</label>
-                <DatePicker className="border" selected={startDate} onChange={(date) => setStartDate(date)} />
+                <DatePicker className="border z-50" selected={startDate} onChange={(date) => setStartDate(date)} />
               </div>
             </div>
             <input type="submit" className="mt-5 rounded-md bg-black px-10 py-2 text-white" />
           </form>
         </div>
+        <h1 className="text-4xl font-semibold my-16 text-center text-orange-500">Work Table</h1>
 
         {/* table */}
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto  z-0">
           <table className="table">
             {/* head */}
             <thead>
