@@ -12,7 +12,7 @@ const useEmployee = () => {
     queryKey: [user?.email, 'isEmployee'],
     queryFn: async() =>{
       const res = await axiosSecure.get(`/users/employee/${user.email}`);
-      console.log(res.data);
+      
       return res.data?.employee
     }
   })

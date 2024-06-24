@@ -22,7 +22,7 @@ const SocialLogin = () => {
           Designation: 'digital marketing',
           status: 'in'
         }
-        axiosPublic.post ('/users', userInfo)
+        axiosPublic.post('/users', userInfo)
         .then(res =>{
           console.log(res.data);
           navigate('/')
