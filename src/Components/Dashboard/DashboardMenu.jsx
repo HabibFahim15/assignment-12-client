@@ -1,4 +1,4 @@
-import { FaUserGroup } from "react-icons/fa6";
+import { FaStreetView, FaUserGroup } from "react-icons/fa6";
 import { HiMiniUserGroup } from "react-icons/hi2";
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -106,6 +106,16 @@ const DashboardMenu = () => {
                       <HiMiniUserGroup />
 
                       <Link to={'/dashboard/all-employee-list'} className="-mr-1 font-medium">All Employee</Link>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      
+                      className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+                    >
+                      <FaStreetView />
+
+                      <Link to={'/dashboard/public-review'} className="-mr-1 font-medium">Public Massage</Link>
                     </a>
                   </li>
                   
@@ -240,7 +250,16 @@ const DashboardMenu = () => {
                       <Link to={'/dashboard/all-employee-list'} className="-mr-1 font-medium">All Employee</Link>
                     </a>
                   </li>
-                  
+                  <li>
+                    <a
+                      
+                      className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+                    >
+                      <FaStreetView />
+
+                      <Link to={'/dashboard/public-review'} className="-mr-1 font-medium">Public Massage</Link>
+                    </a>
+                  </li>
                 </>
                   : 
                    isHr ? <>

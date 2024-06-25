@@ -46,9 +46,32 @@ const ContactUs = () => {
 
   return (
     <div className="grid grid-cols-1">
+       <section className="bg-gray-100 my-8 rounded-lg text-gray-800">
+	<div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
+		<div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
+			<h1 className="text-4xl font-bold leading-none sm:text-5xl">Met  
+				<span className="text-green-600"> Office</span> 
+			</h1>
+			<p className="mt-6 mb-8 text-lg sm:mb-12">The Best office work website.
+				<br  className="hidden md:inline lg:hidden" />It's make for easy for your job.You can apply our office.
+			</p>
+			<div className="">
+				<h1 className="text-3xl font-serif ">Our Adress is:-</h1>
+        <h1>32, Justice SM Morshed Sharany <br /> Agargoan Sher-e-Bangla <br /> Nagar Dhaka-1207, Bangladesh</h1>
+			</div>
+		</div>
+		<div className="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+			<img src="https://static.vecteezy.com/system/resources/thumbnails/000/217/371/small_2x/vector-office-character-illustration.jpg" alt="" className="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128" />
+		</div>
+	</div>
+</section>
       <div className="w-full flex justify-center p-16">
         <div>
+
+       
+
           <h2 className="text-4xl font-semibold text-center">Enter Your Opinion</h2>
+          
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="card bg-base-100 w-full max-w-sm shrink-0">
               <div className="card-body">

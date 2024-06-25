@@ -23,6 +23,7 @@ const EmployeeTable = ({ item, refetch }) => {
 
         // Determine if payment has been made
         if (status === 'paid') {
+          refetch()
           setHasPaid(true);
 
          const  lastPaymentDate = new Date(date); 
@@ -31,11 +32,14 @@ const EmployeeTable = ({ item, refetch }) => {
           oneMonthAgo.setMonth(today.getMonth() - 1); 
 
           if (lastPaymentDate >= oneMonthAgo) {
+            refetch()
             setPaymentDisabled(true); 
           } else {
+            refetch()
             setPaymentDisabled(false); 
           }
         } else {
+          refetch()
           setHasPaid(false);
           setPaymentDisabled(false);
         }
@@ -62,6 +66,7 @@ const EmployeeTable = ({ item, refetch }) => {
         });
         setHasPaid(true); // Simulate setting paid status
         setPaymentDisabled(true); // Disable payment for the current month
+        
       }
     });
   };

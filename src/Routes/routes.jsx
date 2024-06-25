@@ -22,6 +22,7 @@ import AdminRoute from "./AdminRoute";
 import HrRoute from "./HrRoute";
 import EmployeeRoute from "./EmployeeRoute";
 import EmployeeDetails from "../Components/EmployeeDetails/EmployeeDetails";
+import PublicReview from "../Pages/Dashboard/PublicReview/PublicReview";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -85,6 +86,11 @@ export const router = createBrowserRouter([
         path: 'all-employee-list',
         element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
+      {
+        path: 'public-review',
+        element: <AdminRoute><PublicReview></PublicReview></AdminRoute>
+      },
+
       {
         path: 'contact-us',
         element: <ContactUs></ContactUs>

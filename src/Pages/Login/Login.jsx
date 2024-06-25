@@ -35,7 +35,7 @@ const Login = () => {
         icon: "success",
         title: "Signed in successfully"
       });
-      navigate(from, ( {replace: true } ));
+      navigate('/');
     })
     .catch(error =>{
       console.log('Login Faild:', error);
